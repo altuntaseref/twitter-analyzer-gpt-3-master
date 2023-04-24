@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <meta charset="UTF-8">
+    <title>Input Form</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+    <style>
+        body {
+            background-color: #e0ffff;
+        }
+        .container{
+            margin-top: 200px;
+        }
+
+
+    </style>
+</head>
+<body>
+<div class="container" >
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-6">
+            <form method="post" th:action="@{/api/v1/searchTweets}" class="form-inline">
+                <div class="form-group mx-sm-3 mb-2">
+                    <label for="tweet" class="sr-only">Tweet:</label>
+                    <input type="text" id="tweet" name="tweetForm" class="form-control"
+                           placeholder="Enter tweet...">
+                    <label for="tweet" style="position: absolute; top: -50px; left: 0;">Twitter üzerinden duygusal analiz yapmak istediğiniz kelimeyi giriniz</label>
+                </div>
+                <button type="submit" class="btn btn-primary mb-2">Search</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <title></title>
+    <style>
+        body {
+            background-color: #e0ffff;
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+        #chart-container {
+            margin: auto;
+            width: 600px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        #search-results {
+            position: absolute;
+            top: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: bold;
+            font-size: 35px;
+            color: #333333;
+            z-index: 1;
+        }
+
+        #proposals {
+            width: 80%;
+            margin: 20px auto;
+        }
+
+        title {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="container my-5">
+    <div class="row">
+        <div class="col-1g-6 order-1g-2 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Suggestions</h5>
+                    <p class="card-text">[[${negativeProposal}]]</p>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-6">
+                <canvas id="myChart" width="500" height="500"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script th:inline="javascript">
+    var positivePercentage = /*[[${positivePercentage}]]*/ 0;
+    var negativePercentage = /*[[${negativePercentage}]]*/ 0;
+    var neutralPercentage = /*[[${neutralPercentage}]]*/ 0;
+
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var chart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: ['Positive', 'Negative', 'Neutral'],
+            datasets: [{
+                data: [positivePercentage, negativePercentage, neutralPercentage],
+                backgroundColor: ['#36A2EB', '#FF6384', '#FFCE56']
+            }]
+        },
+        options: {
+            responsive: false,
+            maintainAspectRatio: false,
+            legend: {
+                position: 'bottom'
+            },
+            title: {
+                display: true,
+                text: 'Sentiment Analysis Results'
+            }
+        }
+    });
+</script>
+</body>
+</html>
